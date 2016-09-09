@@ -24,7 +24,7 @@ module.exports = nohm.model('User',
         ]
       },
       chats: {
-        type: json
+        type: 'json'
       },
       gravatarEmail: {
         type: 'string',

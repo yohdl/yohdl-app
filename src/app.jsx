@@ -3,7 +3,7 @@ import Recorder from './recordClip';
 import ChatList from './chatList';
 import ClipsList from './clipsList';
 import './App.css';
-import socket = io.connect();
+var socket = io.connect();
 
 class App extends Component {
 	constructor() {
