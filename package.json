@@ -4,7 +4,8 @@
   "description": "dynamic audio messaging service",
   "main": "sever.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./server/server.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,7 @@
   },
   "homepage": "https://github.com/yohdl/yohdl-app#readme",
   "dependencies": {
+    "node-gravatar": "^1.0.2",
     "babel": "^6.5.2",
     "body-parser": "^1.15.2",
     "bower": "^1.7.9",
@@ -28,8 +30,6 @@
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "redis": "^2.6.2",
-    "socket.io": "^1.4.8",
-    "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.15.1"
+    "socket.io": "^1.4.8"
   }
 }
