@@ -1,19 +1,44 @@
 
+var app = require('express')();
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+const fs = require('fs');
+const path = require('path');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const userController = require('./server/user/userController');
+const cookieController = require('./server/util/cookieController');
+const chat = require('./server/chat/chatController');
+// const oppressor = require('oppressor');
 
 
-app.post('/signin'') -> cookiectrl -> userCtrl -> /yohdl
-app post login -> cookiectrl -> userCtrl -> /yohdl
+//parsing the body and adding to the req
+app.use(bodyParser.urlencoded({ extended: true }));
+//handling cookies for all requests
+app.use(cookieParser(), cookieController.setCookie);
 
-on connect -> etablish connection, get id from cookie, query users for user send user object 
-on click -> pass chat id {chat_id: String } ->query chats by passed id -> query files-> 
-  send back an object 
-{
-  id: createdAt: ,
-    chatName: ,
-    users: [array of id strings],
-    files: [array of file objects {id: string, createdAt: Date, filePath:  , author: "useridstring", played: [array of userid strings] }]
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, './../client/yodhl/index.html'));
+});
+
+//serving main.js
+app.get('/main.js', function(req, res) {
+  res.sendFile(path.join(__dirname, './../client/yodhl/main.js'));
+});
+
+//logging the user in
+app.post('/login', userController.verifyUser);
+
+
+//socket.io
+io.on('connection', function(socket) {
+    console.log('connected')
+    //id = req.params.id 
+    //user object contrl.getuser()
+    socket.emit('userObj', {});
   }
-on send > user will send file object ^^, create file in database add file id to chat >
-  broadcast chat object to other clients
+) 
 
-  on client recieve data
+server.listen(8080);  
+
+
