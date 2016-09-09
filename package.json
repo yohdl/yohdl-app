@@ -1,0 +1,19 @@
+{
+  "name": "yohdl-app",
+  "version": "1.0.0",
+  "description": "dynamic audio messaging service",
+  "main": "sever.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yohdl/yohdl-app.git"
+  },
+  "author": "Jose Neves, Derrick Yung, Weylin Wagnon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yohdl/yohdl-app/issues"
+  },
+  "homepage": "https://github.com/yohdl/yohdl-app#readme"
+}
