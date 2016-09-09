@@ -1,13 +1,17 @@
 import React, {Component} from 'react';
 
-class componentName extends Component {
+class Recorder extends Component {
+	constructor() {
+		super();
+	}
+
   render() {
     return (
-      <div>
-        
+      <div id="recorder">
+     		<p>Recorder goes here.</p>
       </div>
     );
   }
 }
 
-export default componentName;
+export default Recorder;
