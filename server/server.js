@@ -7,7 +7,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const userController = require('./server/user/userController');
-const cookieController = require('./server/util/cookieController');
+const cookieController = require('./server/utils/cookieController');
 const chat = require('./server/chat/chatController');
 // const oppressor = require('oppressor');
 
@@ -18,12 +18,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(), cookieController.setCookie);
 
 app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, './../client/yodhl/index.html'));
+  res.sendFile(path.join(__dirname, './../client/yohdl/test.html'));
 });
 
 //serving main.js
 app.get('/main.js', function(req, res) {
-  res.sendFile(path.join(__dirname, './../client/yodhl/main.js'));
+  res.sendFile(path.join(__dirname, './../client/yohdl/main.js'));
 });
 
 //logging the user in
