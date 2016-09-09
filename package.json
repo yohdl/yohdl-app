@@ -15,5 +15,16 @@
   "bugs": {
     "url": "https://github.com/yohdl/yohdl-app/issues"
   },
-  "homepage": "https://github.com/yohdl/yohdl-app#readme"
+  "homepage": "https://github.com/yohdl/yohdl-app#readme",
+  "dependencies": {
+    "babel": "^6.5.2",
+    "express": "^4.14.0",
+    "nohm": "^0.9.8",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
+    "redis": "^2.6.2",
+    "socket.io": "^1.4.8",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.15.1"
+  }
 }
