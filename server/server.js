@@ -11,7 +11,6 @@ const chatController = require('./chat/chatController');
 const fileController = require('./files/fileController');
 const cookieController = require('./utils/cookieController');
 const chat = require('./chat/chatController');
-
 const redis = require('redis');
 const Nohm = require('nohm').Nohm;
 const client = redis.createClient();
@@ -24,7 +23,11 @@ client.on('connect', () => {
   Nohm.setClient(client);
   Nohm.setPrefix('yohdl');
 });
-app.use(express.static('client'))
+
+app.use(express.static('client'));
+app.use('/yohdl',express.static('yohdl'));
+
+
 // binary parser
 
 app.use((req,res,next) => {
@@ -81,21 +84,21 @@ app.post('/clip', (req, res) => {
 })
 
 //serving main.js
-app.get('/bundle.js', function(req, res) {
-  res.sendFile(path.join(__dirname, './../client/yohdl/bundle.js'));
-});
-app.get('/events.js', function(req, res) {
-  res.sendFile(path.join(__dirname, './../client/yohdl/events.js'));
-});
-app.get('/main.js', function(req, res) {
-	res.sendFile(path.join(__dirname, './../client/main.js'));
-});
-app.get('/install.js', function(req, res) {
-	res.sendFile(path.join(__dirname, './../client/install.js'));
-});
-app.get('/main.css', function(req, res) {
-  res.sendFile(path.join(__dirname, './../client/yohdl/main.css'));
-});
+// app.get('/bundle.js', function(req, res) {
+//   res.sendFile(path.join(__dirname, './../client/yohdl/bundle.js'));
+// });
+// app.get('/events.js', function(req, res) {
+//   res.sendFile(path.join(__dirname, './../client/yohdl/events.js'));
+// });
+// app.get('/main.js', function(req, res) {
+// 	res.sendFile(path.join(__dirname, './../client/main.js'));
+// });
+// app.get('/install.js', function(req, res) {
+// 	res.sendFile(path.join(__dirname, './../client/install.js'));
+// });
+// app.get('/main.css', function(req, res) {
+//   res.sendFile(path.join(__dirname, './../client/yohdl/main.css'));
+// });
 
 //logging the user in
 app.post('/login', userController.verifyUser);
@@ -104,8 +107,10 @@ app.post('/login', userController.verifyUser);
 //socket.io
 io.on('connection', function(socket) {
     console.log('connected')
+    // console.log(cookie.parse(socket.handshake.headers['cookie']));
     //id = req.params.id 
     //user object contrl.getuser()
+    // userController.getUser().then((data) => {socket.emit('userObj', data);});
     socket.emit('userObj', {});
   }
 ) 
