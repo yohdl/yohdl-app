@@ -22,6 +22,7 @@
     "body-parser": "^1.15.2",
     "bower": "^1.7.9",
     "browserify": "^13.1.0",
+    "concat-stream": "^1.5.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
     "fs": "0.0.1-security",

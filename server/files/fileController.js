@@ -2,6 +2,11 @@ const Nohm = require('nohm').Nohm;
 const File = require('./fileModel');
 let fileCount;
 const fileController = {}
+fileController.getFileCount = function () {
+  File.find(function (err, ids) {
+    fileCount = ids.length;
+  })
+}
 fileController.getFileCount();
 
 
