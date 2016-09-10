@@ -30,7 +30,7 @@ userController.createUser = function (data) {
     }
   });
 }
-userController.addChat(chatId) {
+userController.addChat = function(chat) {
   
 }
 
