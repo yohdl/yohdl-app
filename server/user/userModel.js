@@ -5,6 +5,8 @@ module.exports = nohm.model('User',
     properties: {
       name: {
         type: 'string',
+        index: true,
+        unique: true,
         validations: [
           ['notEmpty']
         ]
@@ -12,6 +14,7 @@ module.exports = nohm.model('User',
       email: {
         type: 'string',
         unique: true,
+        index: true,
         validations: [
           ['notEmpty'],
           ['email']

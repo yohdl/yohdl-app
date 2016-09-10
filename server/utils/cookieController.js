@@ -1,14 +1,15 @@
 const cookieController = {}
 
 cookieController.checkCookie = function (req, res, next) {
-  if (req.cookies.id && req.cookies.gravatarEmail) {
+  if (req.cookies.userId) {
     res.redirect('/yohdl');
   } else {
     next();
   }
 }
-cookieController.setCookie = function (req, res, user) {
-  res.cookie('id', user._id);
+cookieController.setCookie = function (req, res, next) {
+  res.cookie('id', req.userId);
+  next()
   // res.cookie('gravatarEmail', user.gravatarEmail);
 }
 

@@ -16,7 +16,7 @@ module.exports = nohm.model('File',
         ]
       },
       author: {
-        type: 'string',
+        type: 'json',
         validations: [
           ['notEmpty']
         ]
