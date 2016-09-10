@@ -38,6 +38,7 @@ userController.verifyUser = function (req, res, next) {
   email = req.body.email;
   password = req.body.password;
   User.load()
+  next();
 
 }
 userController.getUsers = function (userIdArr) {
@@ -56,6 +57,7 @@ userController.getUsers = function (userIdArr) {
   });
   Promise.all(promiseArr).then(users => console.log(users))
 }
+//make user
 userController.getAllUsers = function () {
   User.find((err, ids) => {
     console.log(ids);
