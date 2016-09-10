@@ -1,4 +1,5 @@
 var app = require('express')();
+const express = require('express');
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 const fs = require('fs');
@@ -15,20 +16,23 @@ const Nohm = require('nohm').Nohm;
 const client = redis.createClient();
 const concat = require('concat-stream');
 
-client.select(0);
+
+
 client.on('connect', () => {
   console.log('connected to redis');
   Nohm.setClient(client);
   Nohm.setPrefix('yohdl');
 });
-
+app.use(express.static('client'))
 // binary parser
+
 app.use((req,res,next) => {
   req.pipe(concat((data) => {
     req.body = data;
     next();
   }))
 });
+
 
 // const oppressor = require('oppressor');
 
@@ -56,10 +60,19 @@ app.get('/yohdl', function (req, res) {
 app.post('/clip', (req, res) => {
   console.log('body', req.body);
   var data = req.body;
-  var fileId = req.cookie.id;
+  // var fileId = req.cookie.id;
   
-  fileController.createFile({createdAt: 111, author: req.cookie.id}).then((fileObj) => {
-    fs.writeFileSync(fileObj.filePath, data);
+  fileController.createFile({createdAt: 111, author: 1}).then((filepath) => {
+
+    console.log(__dirname + '/../client/' + filePath);
+    console.log(data);
+    fs.writeFile(__dirname + '/../client/' + filePath, data, (err) => {
+      if (err) {
+        throw err;
+      } //else  {
+      //   console.log(file);
+      // }
+    });
   })
   // let buf = new Buffer.(req.body.toString('binary'),'binary');
   res.send('ok');
