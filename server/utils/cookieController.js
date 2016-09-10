@@ -7,7 +7,8 @@ cookieController.checkCookie = function (req, res, next) {
     next();
   }
 }
-cookieController.setCookie = function (req, res, user) {
+cookieController.setCookie = function (req, res, next) {
+  req.body.email
   res.cookie('id', user._id);
   // res.cookie('gravatarEmail', user.gravatarEmail);
 }

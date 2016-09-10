@@ -8,13 +8,6 @@ module.exports = nohm.model('Chat',
           ['notEmpty']
         ]
       },
-      author: {
-        type: 'string',
-        unique: true,
-        validations: [
-          ['notEmpty'],
-        ]
-      },
       files: {
         defaultValue: '[]',
         type: 'json'
