@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import
 
 class ChatList extends Component {
 	constructor() {
@@ -12,7 +11,6 @@ class ChatList extends Component {
       	<ul>
         {this.props.chats.forEach((item, index) =>
         	<li id={item.id}>{item.chatName}</li>
-        	console.log(this.props, 'chatProps')
         	)}
         </ul>
       </div>
