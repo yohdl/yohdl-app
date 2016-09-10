@@ -30,8 +30,9 @@ userController.createUser = function (data) {
     }
   });
 }
+
 userController.addChat = function(chat) {
-  
+
 }
 
 userController.verifyUser = function (req, res, next) {

@@ -39,7 +39,7 @@ if (navigator.getUserMedia) {
       mediaRecorder.start();
       console.log(mediaRecorder.state);
       console.log("recorder started");
-      record.style.background = "red";
+      record.style.background = "black";
 
       stop.disabled = false;
       record.disabled = true;
@@ -64,18 +64,22 @@ if (navigator.getUserMedia) {
       var clipLabel = document.createElement('p');
       var audio = document.createElement('audio');
       var deleteButton = document.createElement('button');
+      var sendButton = document.createElement('button');
      
       clipContainer.classList.add('clip');
       audio.setAttribute('controls', '');
       deleteButton.textContent = 'Delete';
       deleteButton.className = 'delete';
+      sendButton.textContent = 'Send';
+      sendButton.className = 'send';
 
-        clipLabel.textContent = 'your yohdl';
+        clipLabel.textContent = 'Your Yodle.';
      
 
       clipContainer.appendChild(audio);
       clipContainer.appendChild(clipLabel);
       clipContainer.appendChild(deleteButton);
+      clipContainer.appendChild(sendButton);
       soundClips.appendChild(clipContainer);
 
       audio.controls = true;
@@ -88,6 +92,14 @@ if (navigator.getUserMedia) {
       deleteButton.onclick = function(e) {
         evtTgt = e.target;
         evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+      }
+
+      sendButton.onclick = function(e) {
+        var xhttp = new XMLHttpRequest();
+        console.log(blob);
+        xhttp.open("POST", "/clip", true);
+        xhttp.send(blob)
+        e.target.parentNode.parentNode.removeChild(e.target.parentNode);
       }
 
       clipLabel.onclick = function() {
@@ -137,11 +149,11 @@ function visualize(stream) {
 
     analyser.getByteTimeDomainData(dataArray);
 
-    canvasCtx.fillStyle = 'rgb(200, 200, 200)';
+    canvasCtx.fillStyle = 'rgb(1000, 1000, 1000)';
     canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
 
     canvasCtx.lineWidth = 2;
-    canvasCtx.strokeStyle = 'rgb(0, 0, 0)';
+    canvasCtx.strokeStyle = 'rgb(50, 50, 50)';
 
     canvasCtx.beginPath();
 
