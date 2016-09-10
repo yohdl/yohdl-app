@@ -1,7 +1,16 @@
+const fileController = {}
 const Nohm = require('nohm').Nohm;
 const File = require('./fileModel');
+let fileCount = 0;
 
-const fileController = {}
+// fileController.getFileCount = function () {
+//   File.find(function (err, ids) {
+//     fileCount = ids.length;
+//   })
+// }
+
+
+
 //middleware?
 fileController.getFile = function (fileId) {
   return new Promise((resolve, reject) => {
@@ -16,20 +25,23 @@ fileController.getFile = function (fileId) {
 }
 //fix this
 fileController.createFile = function (data) {
+  // fileController.getFileCount();
+  console.log('inside file ctrl create file');
   let file = Nohm.factory('File');
-  //need to generate file id in model
-  file.p(data);
-  return new Promise((resolve, reject) => {
+  filePath = 'clip' + fileCount++;
+  file.p({author: 'jose', filePath: filePath, createdAt: '11'});
+  console.log(file);
+  return saveFile = new Promise((resolve, reject) => {
     file.save(function (err) {
       if (err) {
         reject(err);
       } else {
-        ///need to store file path name 
-        resolve(file);
+        console.log('inside else in create file');
+             ///need to store file path name 
+        resolve(filePath);
       }
     });
   });
-
 
 }
 fileController.getAllFiles = function (idArr) {
