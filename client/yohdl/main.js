@@ -100,6 +100,11 @@ if (navigator.getUserMedia) {
         xhttp.open("POST", "/clip", true);
         xhttp.send(blob)
         e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            socket.emit('clip');
+         }
+       }
       }
 
       clipLabel.onclick = function() {

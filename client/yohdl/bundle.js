@@ -86,7 +86,7 @@
 
 			var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
-			_this.state = { id: 5678, chats: [{ chatName: 'Codesmith', files: [1, 2, 3], id: 679 }, { chatName: 'MakerSquare', files: [4, 5, 6], id: 123 }] };
+			_this.state = { id: 5678, chats: [{ chatName: 'Codesmith', files: [], id: 679 }, { chatName: 'MakerSquare', files: [4, 5, 6], id: 123 }] };
 			return _this;
 		}
 
@@ -103,6 +103,19 @@
 				socket.on('userObj', function (data) {
 					that.setState({ data: data });
 					console.log(that.state, 'current state');
+				});
+			}
+		}, {
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				var that = this;
+				socket.on('newClip', function (url) {
+					console.log('inside new clip event');
+					// setTimeout(() => {
+					// 	that.setState({ files: [url] })
+					// }, 3000);
+					that.state.chats[0].files = [url];
+					that.forceUpdate();
 				});
 			}
 		}, {
@@ -21662,7 +21675,7 @@
 	          'li',
 	          null,
 	          ' ',
-	          _react2.default.createElement(_reactAudioPlayer2.default, { id: item, src: '', autoPlay: 'true' }),
+	          _react2.default.createElement(_reactAudioPlayer2.default, { src: item, autoPlay: 'true' }),
 	          ' '
 	        );
 	      });
