@@ -11,8 +11,9 @@ let fileCount;
 //all file objects in file
 chatController.getInitialData = function (id) {
   console.log('inside getInitialData');
-
-
+  userController.getUser(id).then((user) =>{
+    return resolve(chatController.getChat(user.chats[0]))
+  })
 }
 chatController.addUser = function (userId) {
   console.log('inside addUser');

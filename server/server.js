@@ -15,6 +15,8 @@ const redis = require('redis');
 const Nohm = require('nohm').Nohm;
 const client = redis.createClient();
 const concat = require('concat-stream');
+const cookie = require('cookie');
+let curClip;
 
 
 
@@ -25,7 +27,8 @@ client.on('connect', () => {
 });
 
 app.use(express.static('client'));
-app.use('/yohdl',express.static('yohdl'));
+app.use('/yohdl', express.static('yohdl'));
+
 
 
 // binary parser
@@ -46,7 +49,7 @@ app.use((req,res,next) => {
 //use a different body parser for binary
 
 //parsing the body and adding to the req
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({ extended: true }));
 //handling cookies for all requests
 app.use(cookieParser());
 // app.use(cookieParser(), cookieController.setCookie);
@@ -65,18 +68,20 @@ app.get('/yohdl', function (req, res) {
 app.post('/clip', (req, res) => {
   console.log('body', req.body);
   var data = req.body;
+  
   // var fileId = req.cookie.id;
   
-  fileController.createFile({createdAt: 111, author: 1}).then((filepath) => {
+  fileController.createFile({createdAt: 1111, author: 11}).then((filepath) => {
 
-    console.log(__dirname + '/../client/' + filePath);
-    console.log(data);
-    fs.writeFile(__dirname + '/../client/' + filePath, data, (err) => {
+    curClip = filePath;
+    
+    fs.writeFile(__dirname + '/../client/yohdl/' + filePath, data, (err) => {
       if (err) {
         throw err;
-      } //else  {
-      //   console.log(file);
-      // }
+      } else  {
+        console.log('file created');
+        io.emit('newClip', curClip);
+      }
     });
   })
   // let buf = new Buffer.(req.body.toString('binary'),'binary');
@@ -103,17 +108,32 @@ app.post('/clip', (req, res) => {
 //logging the user in
 app.post('/login', userController.verifyUser);
 
-
+let globalSocket;
 //socket.io
-io.on('connection', function(socket) {
-    console.log('connected')
+io.on('connection', function (socket) {
+  globalSocket = socket;
+  console.log('connected')
+  socket.on('clip', () => { 
+    console.log('inclip listener')
+    // console.log('curClip in ')
+    setTimeout(() => {
+      socket.emit('newClip', curClip);
+    }, 5000);
+    
+   });
     // console.log(cookie.parse(socket.handshake.headers['cookie']));
     //id = req.params.id 
     //user object contrl.getuser()
     // userController.getUser().then((data) => {socket.emit('userObj', data);});
-    socket.emit('userObj', {});
+    // console.log(cookie.parse(socket.handshake.headers['cookie']));
+    // userController.getUser().then((data) => { socket.emit('userObj', data); });
+
+    
   }
 ) 
+// io.on('clip', () => { 
+//   console.log('in clip')
+// })
 
 server.listen(8080);  
 
