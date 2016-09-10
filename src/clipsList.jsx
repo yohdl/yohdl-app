@@ -1,15 +1,16 @@
 import React, {Component} from 'react';
+import ReactAudioPlayer from 'react-audio-player';
 
 class ClipsList extends Component {
   render() {
+    let items = this.props.clips.map((item) => {return <li> <ReactAudioPlayer id={item} src="" autoPlay="true" /> </li>});
+
     return (
-      <div>
+      <span id="clips">
         <ul>
-        	{this.props.clips.forEach((item) =>
-        		<li>{item}</li>
-        		)}
+        	{items}
         </ul>
-      </div>
+      </span>
     );
   }
 }

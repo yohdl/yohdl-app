@@ -10,16 +10,16 @@ const chatController = require('./chat/chatController');
 const fileController = require('./files/fileController');
 const cookieController = require('./utils/cookieController');
 const chat = require('./chat/chatController');
-const redis = require('redis');
-const Nohm = require('nohm').Nohm;
-const client = redis.createClient();
+// const redis = require('redis');
+// const Nohm = require('nohm').Nohm;
+// const client = redis.createClient();
 
-client.select(0);
-client.on('connect', () => {
-  console.log('connected to redis');
-  Nohm.setClient(client);
-  Nohm.setPrefix('yohdl');
-});
+// client.select(0);
+// client.on('connect', () => {
+//   console.log('connected to redis');
+//   Nohm.setClient(client);
+//   Nohm.setPrefix('yohdl');
+// });
 
 
 
@@ -52,6 +52,15 @@ app.get('/bundle.js', function(req, res) {
 });
 app.get('/events.js', function(req, res) {
   res.sendFile(path.join(__dirname, './../client/yohdl/events.js'));
+});
+app.get('/main.js', function(req, res) {
+	res.sendFile(path.join(__dirname, './../client/main.js'));
+});
+app.get('/install.js', function(req, res) {
+	res.sendFile(path.join(__dirname, './../client/install.js'));
+});
+app.get('/main.css', function(req, res) {
+  res.sendFile(path.join(__dirname, './../client/yohdl/main.css'));
 });
 
 //logging the user in

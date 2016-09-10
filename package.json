@@ -31,6 +31,7 @@
     "nohm": "^0.9.8",
     "path": "^0.12.7",
     "react": "^15.3.1",
+    "react-audio-player": "^0.2.5",
     "react-dom": "^15.3.1",
     "redis": "^2.6.2",
     "socket.io": "^1.4.8",

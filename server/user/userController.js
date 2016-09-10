@@ -30,9 +30,9 @@ userController.createUser = function (data) {
     }
   });
 }
-userController.addChat(chatId) {
+// userController.addChat(chatId) {
   
-}
+// }
 
 userController.verifyUser = function (req, res, next) {
   email = req.body.email;

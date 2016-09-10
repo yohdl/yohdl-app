@@ -2,16 +2,38 @@
 <head>
   <meta charset="UTF-8">
   <title>Yohdl - test</title>  
-    <script src="/socket.io/socket.io.js"></script>
-  <script src="events.js"></script>
-  <script src="bundle.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <link rel="stylesheet" type="text/css" href="./main.css"/>
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 </head>
 
 <body>
-<h1>no wey. jose</h1>
-  <div id="app"> 
+      <section class="main-controls">
+        <canvas class="visualizer"></canvas>
+        <div id="buttons">
+          <button class="record">Record</button>
+          <button class="stop">Stop</button>
+        </div>
+      </section>
 
+      <section class="sound-clips">
+
+        <!-- This is left here as a helper for testing the style of the clips
+        If you want to edit their appearance without having to record clips,
+        uncomment this and reload the page. Remember to comment it again when done!
+        <article class="clip">
+          <audio controls></audio>
+          <p>Sample clip name</p>
+          <button class="delete">Delete</button>
+        </article>
+        -->
+
+      </section>
+  <div id="app"> 
   </div>
-  <h2>test</h2>
+   <script type="text/javascript" src="./install.js"></script>
+   <script type="text/javascript" src="./main.js"></script> 
+  <script src="events.js"></script>
+  <script src="bundle.js"></script>
 </body>
 </html>

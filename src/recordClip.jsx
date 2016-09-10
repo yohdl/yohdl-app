@@ -8,7 +8,6 @@ class Recorder extends Component {
   render() {
     return (
       <div id="recorder">
-     		<p>Recorder goes here.</p>
       </div>
     );
   }
