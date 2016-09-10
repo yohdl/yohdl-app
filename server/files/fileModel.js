@@ -3,7 +3,7 @@ module.exports = nohm.model('File',
   {
     properties: {
       createdAt: {
-        type: 'timestamp',
+        type: 'string',
         validations: [
           ['notEmpty']
         ]
