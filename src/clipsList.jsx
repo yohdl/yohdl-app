@@ -7,7 +7,6 @@ class ClipsList extends Component {
         <ul>
         	{this.props.clips.forEach((item) =>
         		<li>{item}</li>
-        		console.log(this.props, 'clips props')
         		)}
         </ul>
       </div>

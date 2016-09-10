@@ -4,7 +4,8 @@ const nohm = require('nohm').Nohm;
 const User = require('./userModel');
 
 
-userController.getUser = function(socket) {
+userController.getUser = function (socket) {
+  
 
 }
 
