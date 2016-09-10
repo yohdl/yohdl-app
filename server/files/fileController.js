@@ -1,7 +1,10 @@
 const Nohm = require('nohm').Nohm;
 const File = require('./fileModel');
-
+let fileCount;
 const fileController = {}
+fileController.getFileCount();
+
+
 //middleware?
 fileController.getFile = function (fileId) {
   return new Promise((resolve, reject) => {
@@ -17,20 +20,18 @@ fileController.getFile = function (fileId) {
 //fix this
 fileController.createFile = function (data) {
   let file = Nohm.factory('File');
-  //need to generate file id in model
+  data.filePath = 'clip' + fileCount;
   file.p(data);
   return new Promise((resolve, reject) => {
     file.save(function (err) {
       if (err) {
         reject(err);
       } else {
-        ///need to store file path name 
+             ///need to store file path name 
         resolve(file);
       }
     });
   });
-
-
 }
 fileController.getAllFiles = function (idArr) {
   const promiseArr = [];

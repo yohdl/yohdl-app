@@ -31,6 +31,9 @@ client.on('connect', () => {
 // const oppressor = require('oppressor');
 
 
+
+//use a different body parser for binary
+
 //parsing the body and adding to the req
 app.use(bodyParser.urlencoded({ extended: true }));
 //handling cookies for all requests
@@ -45,7 +48,14 @@ app.get('/yohdl', function (req, res) {
   
   res.sendFile(path.join(__dirname, './../client/yohdl/index.html'));
 });
+app.post('/clip', (req, res) => {
+  let data = req.body;
+  fileController.createFile(data).then((fileObj) => {
+  //   fs.writeFile(fileObj.filePath, someData )
 
+  // })
+  fs.writeFile('./testfile.ext',  )
+});
 //serving main.js
 app.get('/bundle.js', function(req, res) {
   res.sendFile(path.join(__dirname, './../client/yohdl/bundle.js'));
