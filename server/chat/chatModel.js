@@ -18,6 +18,7 @@ module.exports = nohm.model('Chat',
       },
       name: {
         type: 'string',
+        unique: true,
         validations: [
           ['notEmpty']
         ]

@@ -14,46 +14,13 @@ const redis = require('redis');
 const Nohm = require('nohm').Nohm;
 const client = redis.createClient();
 
-// client.select(0);
+client.select(0);
 client.on('connect', () => {
   console.log('connected to redis');
   Nohm.setClient(client);
   Nohm.setPrefix('yohdl');
-  userController.findAllUsers();
 });
-// client.on('connect', () => {
-//   console.log('connected to redis');
-//   Nohm.setClient(client);
-//   Nohm.setPrefix('yohdl');
-//   userController.createUser({
-//     name: "Jose",
-//     email: "joseeeee@jmail.com",
-//     password: "password1",
-//     chats: JSON.stringify(['someid']),
-//     gravatarEmail: "some shit goes here"  
-//   })
-// client.select(0);
-// client.on('connect', () => {
-//   console.log('connected to redis');
-//   Nohm.setClient(client);
-//   Nohm.setPrefix('yohdl');
-//   fileController.createFile({
-//     createdAt: 111111,
-//     filePath: 'clips/1234',
-//     author: JSON.stringify({ id: 123, name: 'Jose' })
-//   });
-// });
-// client.on('connect', () => {
-//   console.log('connected to redis');
-//   Nohm.setClient(client);
-//   Nohm.setPrefix('yohdl');
-//   chatController.createChat({
-//     createdAt: 111111,
-//     files: JSON.stringify(['123', '233','2423']),
-//     users: JSON.stringify([{ id: 'someid', name: 'somename', email: 'email' }]),
-//     name: 'superdopechat'
-//   });
-// });
+
 
 
 
